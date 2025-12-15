@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 from database import get_db_connection
 
 # Routers
@@ -8,6 +9,20 @@ from routers.veterinarian_analytics import router as veterinarian_analytics_rout
 app = FastAPI(
     title="Veterinary Analytics API",
     version="1.0.0"
+)
+
+# ------------------------------------
+# CORS (OBLIGATORIO PARA EL FRONTEND)
+# ------------------------------------
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=[
+        "http://localhost:3000",
+        "http://127.0.0.1:3000"
+    ],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 # ------------------------------------
