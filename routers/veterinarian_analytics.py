@@ -109,3 +109,36 @@ def services_by_period(
             }
         ]
     }
+
+
+@router.get("/kpis/summary")
+def kpis_summary(clinic_id: int):
+    """
+    Devuelve KPIs para el dashboard de una clínica:
+    - Total ingresos
+    - Ingreso promedio por cita
+    - Total citas realizadas
+    """
+    conn = get_db_connection()
+    cur = conn.cursor()
+
+    # Total ingresos por clínica
+    cur.execute("SELECT SUM(amount) FROM appointments WHERE id_clinic = %s", (clinic_id,))
+    total_revenue = cur.fetchone()[0] or 0
+
+    # Ingreso promedio por cita
+    cur.execute("SELECT AVG(amount) FROM appointments WHERE id_clinic = %s", (clinic_id,))
+    avg_revenue = cur.fetchone()[0] or 0
+
+    # Total citas por clínica
+    cur.execute("SELECT COUNT(*) FROM appointments WHERE id_clinic = %s", (clinic_id,))
+    total_appointments = cur.fetchone()[0]
+
+    cur.close()
+    conn.close()
+
+    return {
+        "total_revenue": float(total_revenue),
+        "avg_revenue": float(avg_revenue),
+        "total_appointments": total_appointments
+    }

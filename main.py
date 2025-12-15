@@ -34,12 +34,16 @@ def root():
         "message": "API activa",
         "endpoints": [
             "/health/db",
+            # Admin Analytics
             "/admin/analytics/clinics",
             "/admin/analytics/animals",
             "/admin/analytics/clients-by-month",
+            "/admin/analytics/kpis/summary",
+            # Veterinarian Analytics
             "/veterinarian/analytics/top-clients",
             "/veterinarian/analytics/top-services",
-            "/veterinarian/analytics/services-by-period"
+            "/veterinarian/analytics/services-by-period",
+            "/veterinarian/analytics/kpis/summary"
         ]
     }
 

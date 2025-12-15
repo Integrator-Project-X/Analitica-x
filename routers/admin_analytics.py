@@ -191,3 +191,36 @@ def services_by_period(period: str = "month"):
         }
         for r in rows
     ]
+
+
+@router.get("/kpis/summary")
+def kpis_summary():
+    """
+    Devuelve KPIs generales para el dashboard Admin:
+    - Total de ingresos
+    - Ingreso promedio por cita
+    - Total de citas realizadas
+    """
+    conn = get_db_connection()
+    cur = conn.cursor()
+
+    # Total ingresos
+    cur.execute("SELECT SUM(amount) FROM appointments")
+    total_revenue = cur.fetchone()[0] or 0
+
+    # Ingreso promedio
+    cur.execute("SELECT AVG(amount) FROM appointments")
+    avg_revenue = cur.fetchone()[0] or 0
+
+    # Total citas
+    cur.execute("SELECT COUNT(*) FROM appointments")
+    total_appointments = cur.fetchone()[0]
+
+    cur.close()
+    conn.close()
+
+    return {
+        "total_revenue": float(total_revenue),
+        "avg_revenue": float(avg_revenue),
+        "total_appointments": total_appointments
+    }
