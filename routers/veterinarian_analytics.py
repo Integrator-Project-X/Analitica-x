@@ -37,6 +37,7 @@ def top_clients_by_clinic(
         for r in rows
     ]
 
+
 @router.get("/top-services")
 def top_services(clinic_id: int):
     conn = get_db_connection()
@@ -62,7 +63,7 @@ def top_services(clinic_id: int):
         "labels": [r[0] for r in rows],
         "datasets": [
             {
-                "label": "Servicios más solicitados",
+                "label": "Most requested services",
                 "data": [r[1] for r in rows]
             }
         ]
@@ -104,7 +105,7 @@ def services_by_period(
         "labels": [r[0].strftime("%Y-%m-%d") for r in rows],
         "datasets": [
             {
-                "label": "Servicios realizados",
+                "label": "Services performed",
                 "data": [r[1] for r in rows]
             }
         ]
@@ -114,24 +115,33 @@ def services_by_period(
 @router.get("/kpis/summary")
 def kpis_summary(clinic_id: int):
     """
-    Devuelve KPIs para el dashboard de una clínica:
-    - Total ingresos
-    - Ingreso promedio por cita
-    - Total citas realizadas
+    Returns KPIs for a clinic dashboard:
+    - Total revenue
+    - Average revenue per appointment
+    - Total number of appointments
     """
     conn = get_db_connection()
     cur = conn.cursor()
 
-    # Total ingresos por clínica
-    cur.execute("SELECT SUM(amount) FROM appointments WHERE id_clinic = %s", (clinic_id,))
+    # Total revenue by clinic
+    cur.execute(
+        "SELECT SUM(amount) FROM appointments WHERE id_clinic = %s",
+        (clinic_id,)
+    )
     total_revenue = cur.fetchone()[0] or 0
 
-    # Ingreso promedio por cita
-    cur.execute("SELECT AVG(amount) FROM appointments WHERE id_clinic = %s", (clinic_id,))
+    # Average revenue per appointment
+    cur.execute(
+        "SELECT AVG(amount) FROM appointments WHERE id_clinic = %s",
+        (clinic_id,)
+    )
     avg_revenue = cur.fetchone()[0] or 0
 
-    # Total citas por clínica
-    cur.execute("SELECT COUNT(*) FROM appointments WHERE id_clinic = %s", (clinic_id,))
+    # Total appointments by clinic
+    cur.execute(
+        "SELECT COUNT(*) FROM appointments WHERE id_clinic = %s",
+        (clinic_id,)
+    )
     total_appointments = cur.fetchone()[0]
 
     cur.close()

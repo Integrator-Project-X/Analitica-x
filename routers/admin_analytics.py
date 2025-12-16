@@ -30,12 +30,11 @@ def clinics_with_most_services():
         "labels": [r[0] for r in rows],
         "datasets": [
             {
-                "label": "Servicios por clínica",
+                "label": "Services per clinic",
                 "data": [r[1] for r in rows]
             }
         ]
     }
-
 
 
 @router.get("/animals")
@@ -62,12 +61,11 @@ def most_attended_animals():
         "labels": [r[0] for r in rows],
         "datasets": [
             {
-                "label": "Servicios por tipo de animal",
+                "label": "Services by animal type",
                 "data": [r[1] for r in rows]
             }
         ]
     }
-
 
 
 @router.get("/clients-by-month")
@@ -92,12 +90,11 @@ def clients_by_month():
         "labels": [r[0] for r in rows],
         "datasets": [
             {
-                "label": "Clientes por mes",
+                "label": "Clients per month",
                 "data": [r[1] for r in rows]
             }
         ]
     }
-
 
 
 @router.get("/top-clients")
@@ -127,7 +124,6 @@ def top_clients(limit: int = 5):
         }
         for r in rows
     ]
-
 
 
 @router.get("/services")
@@ -196,23 +192,23 @@ def services_by_period(period: str = "month"):
 @router.get("/kpis/summary")
 def kpis_summary():
     """
-    Devuelve KPIs generales para el dashboard Admin:
-    - Total de ingresos
-    - Ingreso promedio por cita
-    - Total de citas realizadas
+    Returns general KPIs for the Admin dashboard:
+    - Total revenue
+    - Average revenue per appointment
+    - Total number of appointments
     """
     conn = get_db_connection()
     cur = conn.cursor()
 
-    # Total ingresos
+    # Total revenue
     cur.execute("SELECT SUM(amount) FROM appointments")
     total_revenue = cur.fetchone()[0] or 0
 
-    # Ingreso promedio
+    # Average revenue per appointment
     cur.execute("SELECT AVG(amount) FROM appointments")
     avg_revenue = cur.fetchone()[0] or 0
 
-    # Total citas
+    # Total appointments
     cur.execute("SELECT COUNT(*) FROM appointments")
     total_appointments = cur.fetchone()[0]
 

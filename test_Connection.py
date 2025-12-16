@@ -3,7 +3,7 @@ from database import get_db_connection
 conn = get_db_connection()
 
 if conn:
-    print("✅ Conexión exitosa a Supabase PostgreSQL")
+    print("✅ Successfully connected to Supabase PostgreSQL")
     cursor = conn.cursor()
     cursor.execute("SELECT version();")
     version = cursor.fetchone()
@@ -11,4 +11,4 @@ if conn:
     cursor.close()
     conn.close()
 else:
-    print("❌ No se pudo establecer conexión")
+    print("❌ Could not establish connection")

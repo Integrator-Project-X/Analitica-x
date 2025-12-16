@@ -1,45 +1,55 @@
+
 # 📊 Veterinary Analytics API
 
-Backend analítico para una plataforma de veterinarias usando **FastAPI + Supabase (PostgreSQL)**.
-Este servicio expone endpoints de analítica listos para ser consumidos por **Power BI**, **dashboards web** o un **frontend (React / Next.js)**.
+Analytical backend for a veterinary platform built with  **FastAPI + Supabase (PostgreSQL)** .
+
+This service exposes analytics endpoints ready to be consumed by  **Power BI** ,  **web dashboards** , or a  **frontend (React / Next.js)** .
 
 ---
 
-## 1️⃣ Crear y activar el entorno virtual
+## 1️⃣ Create and activate the virtual environment
 
-### Crear entorno virtual
+### Create virtual environment
 
-```bash
-python -m venv venv
-```
+<pre class="overflow-visible! px-0!" data-start="477" data-end="508"><div class="contain-inline-size rounded-2xl corner-superellipse/1.1 relative bg-token-sidebar-surface-primary"><div class="sticky top-9"><div class="absolute end-0 bottom-0 flex h-9 items-center pe-2"><div class="bg-token-bg-elevated-secondary text-token-text-secondary flex items-center gap-4 rounded-sm px-2 font-sans text-xs"></div></div></div><div class="overflow-y-auto p-4" dir="ltr"><code class="whitespace-pre! language-bash"><span><span>python -m venv venv
+</span></span></code></div></div></pre>
 
-venv\Scripts\activate
+### Activate it (Windows)
 
+<pre class="overflow-visible! px-0!" data-start="537" data-end="570"><div class="contain-inline-size rounded-2xl corner-superellipse/1.1 relative bg-token-sidebar-surface-primary"><div class="sticky top-9"><div class="absolute end-0 bottom-0 flex h-9 items-center pe-2"><div class="bg-token-bg-elevated-secondary text-token-text-secondary flex items-center gap-4 rounded-sm px-2 font-sans text-xs"></div></div></div><div class="overflow-y-auto p-4" dir="ltr"><code class="whitespace-pre! language-bash"><span><span>venv\Scripts\activate
+</span></span></code></div></div></pre>
 
-## 2️⃣ Instalación de dependencias
+---
 
-Instalar los paquetes necesarios:
+## 2️⃣ Install dependencies
 
-pip install -r requirements.txt
+Install the required packages:
 
+<pre class="overflow-visible! px-0!" data-start="638" data-end="681"><div class="contain-inline-size rounded-2xl corner-superellipse/1.1 relative bg-token-sidebar-surface-primary"><div class="sticky top-9"><div class="absolute end-0 bottom-0 flex h-9 items-center pe-2"><div class="bg-token-bg-elevated-secondary text-token-text-secondary flex items-center gap-4 rounded-sm px-2 font-sans text-xs"></div></div></div><div class="overflow-y-auto p-4" dir="ltr"><code class="whitespace-pre! language-bash"><span><span>pip install -r requirements.txt
+</span></span></code></div></div></pre>
 
-## 4️⃣ Variables de entorno (`.env`)
+---
 
-Crear el archivo `.env` en la raíz del proyecto.
+## 4️⃣ Environment variables (`.env`)
 
-Aquí se guardan **credenciales sensibles** y  **configuración de Supabase** .
+Create a `.env` file at the root of the project.
 
-`<pre class="overflow-visible! px-0!" data-start="1398" data-end="1711"><div class="contain-inline-size rounded-2xl corner-superellipse/1.1 relative bg-token-sidebar-surface-primary">``<div class="sticky top-9"><div class="absolute end-0 bottom-0 flex h-9 items-center pe-2">``<div class="bg-token-bg-elevated-secondary text-token-text-secondary flex items-center gap-4 rounded-sm px-2 font-sans text-xs"></div>``</div></div>``<div class="overflow-y-auto p-4" dir="ltr"><code class="whitespace-pre! language-env">``<span>`# PostgreSQL Supabase
+This file stores **sensitive credentials** and  **Supabase configuration** .
+
+<pre class="overflow-visible! px-0!" data-start="853" data-end="1028"><div class="contain-inline-size rounded-2xl corner-superellipse/1.1 relative bg-token-sidebar-surface-primary"><div class="sticky top-9"><div class="absolute end-0 bottom-0 flex h-9 items-center pe-2"><div class="bg-token-bg-elevated-secondary text-token-text-secondary flex items-center gap-4 rounded-sm px-2 font-sans text-xs"></div></div></div><div class="overflow-y-auto p-4" dir="ltr"><code class="whitespace-pre! language-env"><span># PostgreSQL Supabase
 DB_HOST=aws-0-us-west-2.pooler.supabase.com
 DB_PORT=5432
 DB_USER=postgres.<project_ref>
-DB_PASSWORD=TU_PASSWORD
+DB_PASSWORD=YOUR_PASSWORD
 DB_NAME=postgres
-DB_SSL=true `</code></div>``</div></pre>`
+DB_SSL=true
+</span></code></div></div></pre>
 
-## 5️⃣ Estructura del proyecto
+---
 
-<pre class="overflow-visible! px-0!" data-start="1793" data-end="1988"><div class="contain-inline-size rounded-2xl corner-superellipse/1.1 relative bg-token-sidebar-surface-primary"><div class="sticky top-9"><div class="absolute end-0 bottom-0 flex h-9 items-center pe-2"><div class="bg-token-bg-elevated-secondary text-token-text-secondary flex items-center gap-4 rounded-sm px-2 font-sans text-xs"></div></div></div><div class="overflow-y-auto p-4" dir="ltr"><code class="whitespace-pre! language-text"><span><span>Analitica-x/
+## 5️⃣ Project structure
+
+<pre class="overflow-visible! px-0!" data-start="1061" data-end="1256"><div class="contain-inline-size rounded-2xl corner-superellipse/1.1 relative bg-token-sidebar-surface-primary"><div class="sticky top-9"><div class="absolute end-0 bottom-0 flex h-9 items-center pe-2"><div class="bg-token-bg-elevated-secondary text-token-text-secondary flex items-center gap-4 rounded-sm px-2 font-sans text-xs"></div></div></div><div class="overflow-y-auto p-4" dir="ltr"><code class="whitespace-pre! language-text"><span><span>Analitica-x/
 │
 ├── main.py
 ├── database.py
@@ -56,11 +66,11 @@ DB_SSL=true `</code></div>``</div></pre>`
 
 ---
 
-## 6️⃣ Conexión a base de datos (`database.py`)
+## 6️⃣ Database connection (`database.py`)
 
-Archivo encargado de crear la conexión con PostgreSQL (Supabase).
+This file is responsible for creating the PostgreSQL (Supabase) connection.
 
-<pre class="overflow-visible! px-0!" data-start="2111" data-end="2665"><div class="contain-inline-size rounded-2xl corner-superellipse/1.1 relative bg-token-sidebar-surface-primary"><div class="sticky top-9"><div class="absolute end-0 bottom-0 flex h-9 items-center pe-2"><div class="bg-token-bg-elevated-secondary text-token-text-secondary flex items-center gap-4 rounded-sm px-2 font-sans text-xs"></div></div></div><div class="overflow-y-auto p-4" dir="ltr"><code class="whitespace-pre! language-python"><span><span>import</span><span> psycopg2
+<pre class="overflow-visible! px-0!" data-start="1384" data-end="1938"><div class="contain-inline-size rounded-2xl corner-superellipse/1.1 relative bg-token-sidebar-surface-primary"><div class="sticky top-9"><div class="absolute end-0 bottom-0 flex h-9 items-center pe-2"><div class="bg-token-bg-elevated-secondary text-token-text-secondary flex items-center gap-4 rounded-sm px-2 font-sans text-xs"></div></div></div><div class="overflow-y-auto p-4" dir="ltr"><code class="whitespace-pre! language-python"><span><span>import</span><span> psycopg2
 </span><span>import</span><span> os
 </span><span>from</span><span> dotenv </span><span>import</span><span> load_dotenv
 
@@ -84,41 +94,43 @@ load_dotenv()
 
 ---
 
-## 7️⃣ Prueba de conexión (`test_connection.py`)
+## 7️⃣ Connection test (`test_connection.py`)
 
-Archivo para validar que la conexión con Supabase funciona correctamente.
+Used to validate that the Supabase connection works correctly.
 
-<pre class="overflow-visible! px-0!" data-start="2797" data-end="3074"><div class="contain-inline-size rounded-2xl corner-superellipse/1.1 relative bg-token-sidebar-surface-primary"><div class="sticky top-9"><div class="absolute end-0 bottom-0 flex h-9 items-center pe-2"><div class="bg-token-bg-elevated-secondary text-token-text-secondary flex items-center gap-4 rounded-sm px-2 font-sans text-xs"></div></div></div><div class="overflow-y-auto p-4" dir="ltr"><code class="whitespace-pre! language-python"><span><span>from</span><span> database </span><span>import</span><span> get_db_connection
+<pre class="overflow-visible! px-0!" data-start="2056" data-end="2337"><div class="contain-inline-size rounded-2xl corner-superellipse/1.1 relative bg-token-sidebar-surface-primary"><div class="sticky top-9"><div class="absolute end-0 bottom-0 flex h-9 items-center pe-2"><div class="bg-token-bg-elevated-secondary text-token-text-secondary flex items-center gap-4 rounded-sm px-2 font-sans text-xs"></div></div></div><div class="overflow-y-auto p-4" dir="ltr"><code class="whitespace-pre! language-python"><span><span>from</span><span> database </span><span>import</span><span> get_db_connection
 
 conn = get_db_connection()
 
 </span><span>if</span><span> conn:
     cur = conn.cursor()
     cur.execute(</span><span>"SELECT version();"</span><span>)
-    </span><span>print</span><span>(</span><span>"Conexión exitosa"</span><span>)
+    </span><span>print</span><span>(</span><span>"Connection successful"</span><span>)
     </span><span>print</span><span>(cur.fetchone())
     cur.close()
     conn.close()
 </span><span>else</span><span>:
-    </span><span>print</span><span>(</span><span>"Error de conexión"</span><span>)
+    </span><span>print</span><span>(</span><span>"Connection error"</span><span>)
 </span></span></code></div></div></pre>
 
-Ejecutar:
+Run the test:
 
-<pre class="overflow-visible! px-0!" data-start="3086" data-end="3123"><div class="contain-inline-size rounded-2xl corner-superellipse/1.1 relative bg-token-sidebar-surface-primary"><div class="sticky top-9"><div class="absolute end-0 bottom-0 flex h-9 items-center pe-2"><div class="bg-token-bg-elevated-secondary text-token-text-secondary flex items-center gap-4 rounded-sm px-2 font-sans text-xs"></div></div></div><div class="overflow-y-auto p-4" dir="ltr"><code class="whitespace-pre! language-bash"><span><span>python test_connection.py
+<pre class="overflow-visible! px-0!" data-start="2354" data-end="2391"><div class="contain-inline-size rounded-2xl corner-superellipse/1.1 relative bg-token-sidebar-surface-primary"><div class="sticky top-9"><div class="absolute end-0 bottom-0 flex h-9 items-center pe-2"><div class="bg-token-bg-elevated-secondary text-token-text-secondary flex items-center gap-4 rounded-sm px-2 font-sans text-xs"></div></div></div><div class="overflow-y-auto p-4" dir="ltr"><code class="whitespace-pre! language-bash"><span><span>python test_connection.py
 </span></span></code></div></div></pre>
 
 ---
 
-## 8️⃣ Endpoints de analítica administrativa (`routers/admin_analytics.py`)
+## 8️⃣ Administrative analytics endpoints (`routers/admin_analytics.py`)
 
-Endpoints globales para administradores.
+Global analytics endpoints for administrators.
 
-* Clínicas con más servicios
-* Animales más atendidos
-* Clientes por mes
+**Includes:**
 
-<pre class="overflow-visible! px-0!" data-start="3323" data-end="3488"><div class="contain-inline-size rounded-2xl corner-superellipse/1.1 relative bg-token-sidebar-surface-primary"><div class="sticky top-9"><div class="absolute end-0 bottom-0 flex h-9 items-center pe-2"><div class="bg-token-bg-elevated-secondary text-token-text-secondary flex items-center gap-4 rounded-sm px-2 font-sans text-xs"></div></div></div><div class="overflow-y-auto p-4" dir="ltr"><code class="whitespace-pre! language-python"><span><span>from</span><span> fastapi </span><span>import</span><span> APIRouter
+* Clinics with the most services
+* Most attended animal types
+* Clients per month
+
+<pre class="overflow-visible! px-0!" data-start="2617" data-end="2782"><div class="contain-inline-size rounded-2xl corner-superellipse/1.1 relative bg-token-sidebar-surface-primary"><div class="sticky top-9"><div class="absolute end-0 bottom-0 flex h-9 items-center pe-2"><div class="bg-token-bg-elevated-secondary text-token-text-secondary flex items-center gap-4 rounded-sm px-2 font-sans text-xs"></div></div></div><div class="overflow-y-auto p-4" dir="ltr"><code class="whitespace-pre! language-python"><span><span>from</span><span> fastapi </span><span>import</span><span> APIRouter
 </span><span>from</span><span> database </span><span>import</span><span> get_db_connection
 
 router = APIRouter(
@@ -127,19 +139,21 @@ router = APIRouter(
 )
 </span></span></code></div></div></pre>
 
-(Los endpoints devuelven datos listos para gráficos).
+*(Endpoints return data already formatted for charts.)*
 
 ---
 
-## 9️⃣ Endpoints de analítica veterinaria (`routers/veterinarian_analytics.py`)
+## 9️⃣ Veterinary analytics endpoints (`routers/veterinarian_analytics.py`)
 
-Endpoints filtrados por clínica.
+Clinic-filtered analytics endpoints.
 
-* Servicios más solicitados
-* Clientes frecuentes
-* Servicios por período (año / mes / día)
+**Includes:**
 
-<pre class="overflow-visible! px-0!" data-start="3758" data-end="3944"><div class="contain-inline-size rounded-2xl corner-superellipse/1.1 relative bg-token-sidebar-surface-primary"><div class="sticky top-9"><div class="absolute end-0 bottom-0 flex h-9 items-center pe-2"><div class="bg-token-bg-elevated-secondary text-token-text-secondary flex items-center gap-4 rounded-sm px-2 font-sans text-xs"></div></div></div><div class="overflow-y-auto p-4" dir="ltr"><code class="whitespace-pre! language-python"><span><span>from</span><span> fastapi </span><span>import</span><span> APIRouter, Query
+* Most requested services
+* Frequent clients
+* Services by period (year / month / day)
+
+<pre class="overflow-visible! px-0!" data-start="3063" data-end="3249"><div class="contain-inline-size rounded-2xl corner-superellipse/1.1 relative bg-token-sidebar-surface-primary"><div class="sticky top-9"><div class="absolute end-0 bottom-0 flex h-9 items-center pe-2"><div class="bg-token-bg-elevated-secondary text-token-text-secondary flex items-center gap-4 rounded-sm px-2 font-sans text-xs"></div></div></div><div class="overflow-y-auto p-4" dir="ltr"><code class="whitespace-pre! language-python"><span><span>from</span><span> fastapi </span><span>import</span><span> APIRouter, Query
 </span><span>from</span><span> database </span><span>import</span><span> get_db_connection
 
 router = APIRouter(
@@ -150,11 +164,11 @@ router = APIRouter(
 
 ---
 
-## 🔟 Archivo principal (`main.py`)
+## 🔟 Main application file (`main.py`)
 
-Inicializa la API y registra todos los routers.
+Initializes the API and registers all routers.
 
-<pre class="overflow-visible! px-0!" data-start="4037" data-end="5079"><div class="contain-inline-size rounded-2xl corner-superellipse/1.1 relative bg-token-sidebar-surface-primary"><div class="sticky top-9"><div class="absolute end-0 bottom-0 flex h-9 items-center pe-2"><div class="bg-token-bg-elevated-secondary text-token-text-secondary flex items-center gap-4 rounded-sm px-2 font-sans text-xs"></div></div></div><div class="overflow-y-auto p-4" dir="ltr"><code class="whitespace-pre! language-python"><span><span>from</span><span> fastapi </span><span>import</span><span> FastAPI
+<pre class="overflow-visible! px-0!" data-start="3345" data-end="4387"><div class="contain-inline-size rounded-2xl corner-superellipse/1.1 relative bg-token-sidebar-surface-primary"><div class="sticky top-9"><div class="absolute end-0 bottom-0 flex h-9 items-center pe-2"><div class="bg-token-bg-elevated-secondary text-token-text-secondary flex items-center gap-4 rounded-sm px-2 font-sans text-xs"></div></div></div><div class="overflow-y-auto p-4" dir="ltr"><code class="whitespace-pre! language-python"><span><span>from</span><span> fastapi </span><span>import</span><span> FastAPI
 </span><span>from</span><span> database </span><span>import</span><span> get_db_connection
 </span><span>from</span><span> routers.admin_analytics </span><span>import</span><span> router </span><span>as</span><span> admin_analytics_router
 </span><span>from</span><span> routers.veterinarian_analytics </span><span>import</span><span> router </span><span>as</span><span> veterinarian_analytics_router
@@ -167,7 +181,7 @@ app = FastAPI(
 </span><span>@app.get("/"</span><span>)
 </span><span>def</span><span></span><span>root</span><span>():
     </span><span>return</span><span> {
-        </span><span>"message"</span><span>: </span><span>"API activa"</span><span>,
+        </span><span>"message"</span><span>: </span><span>"API active"</span><span>,
         </span><span>"endpoints"</span><span>: [
             </span><span>"/health/db"</span><span>,
             </span><span>"/admin/analytics/*"</span><span>,
@@ -202,8 +216,8 @@ app.include_router(veterinarian_analytics_router)
 
 ---
 
-## 1️⃣1️⃣ Ejecutar la API
+## 1️⃣1️⃣ Run the API
 
-Con el entorno virtual activo:
+With the virtual environment activated:
 
-<pre class="overflow-visible! px-0!" data-start="5145" data-end="5182"><div class="contain-inline-size rounded-2xl corner-superellipse/1.1 relative bg-token-sidebar-surface-primary"><div class="sticky top-9"><div class="absolute end-0 bottom-0 flex h-9 items-center pe-2"><div class="bg-token-bg-elevated-secondary text-token-text-secondary flex items-center gap-4 rounded-sm px-2 font-sans text-xs"></div></div></div><div class="overflow-y-auto p-4" dir="ltr"><code class="whitespace-pre! language-bash"><span><span>uvicorn main:app --reload</span></span></code></div></div></pre>
+<pre class="overflow-visible! px-0!" data-start="4458" data-end="4495"><div class="contain-inline-size rounded-2xl corner-superellipse/1.1 relative bg-token-sidebar-surface-primary"><div class="sticky top-9"><div class="absolute end-0 bottom-0 flex h-9 items-center pe-2"><div class="bg-token-bg-elevated-secondary text-token-text-secondary flex items-center gap-4 rounded-sm px-2 font-sans text-xs"></div></div></div><div class="overflow-y-auto p-4" dir="ltr"><code class="whitespace-pre! language-bash"><span><span>uvicorn main:app --reload</span></span></code></div></div></pre>

@@ -12,7 +12,7 @@ app = FastAPI(
 )
 
 # ------------------------------------
-# CORS (OBLIGATORIO PARA EL FRONTEND)
+# CORS (REQUIRED FOR FRONTEND)
 # ------------------------------------
 app.add_middleware(
     CORSMiddleware,
@@ -31,7 +31,7 @@ app.add_middleware(
 @app.get("/")
 def root():
     return {
-        "message": "API activa",
+        "message": "API is running",
         "endpoints": [
             "/health/db",
             # Admin Analytics
@@ -56,7 +56,7 @@ def check_db():
     if not conn:
         return {
             "status": "error",
-            "message": "No conecta a la base de datos"
+            "message": "Database connection failed"
         }
 
     cur = conn.cursor()
