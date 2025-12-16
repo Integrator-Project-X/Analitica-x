@@ -189,34 +189,4 @@ def services_by_period(period: str = "month"):
     ]
 
 
-@router.get("/kpis/summary")
-def kpis_summary():
-    """
-    Returns general KPIs for the Admin dashboard:
-    - Total revenue
-    - Average revenue per appointment
-    - Total number of appointments
-    """
-    conn = get_db_connection()
-    cur = conn.cursor()
 
-    # Total revenue
-    cur.execute("SELECT SUM(amount) FROM appointments")
-    total_revenue = cur.fetchone()[0] or 0
-
-    # Average revenue per appointment
-    cur.execute("SELECT AVG(amount) FROM appointments")
-    avg_revenue = cur.fetchone()[0] or 0
-
-    # Total appointments
-    cur.execute("SELECT COUNT(*) FROM appointments")
-    total_appointments = cur.fetchone()[0]
-
-    cur.close()
-    conn.close()
-
-    return {
-        "total_revenue": float(total_revenue),
-        "avg_revenue": float(avg_revenue),
-        "total_appointments": total_appointments
-    }
